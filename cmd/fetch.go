@@ -50,7 +50,7 @@ func RunFetch(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
-	log.Printf("fetching GitHub data for repository %s", Repo)
+  log.Printf("new code: fetching GitHub data for repository %s", Repo)
 	fetchCtx := &fetch.Context{
 		Repo:     Repo,
 		Token:    token,
