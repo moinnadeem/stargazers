@@ -59,7 +59,7 @@ func (e *httpError) Error() string {
 }
 
 // linkRE provides parsing of the "Link" HTTP header directive.
-var linkRE = regexp.MustCompile(`^<(.*)>; rel="next", <(.*)>; rel="last".*`)
+var linkRE = regexp.MustCompile(`^.*<(.*)>; rel="next", <(.*)>; rel="last".*`)
 
 // fetchURL fetches the specified URL. The cache (specified in
 // c.CacheDir) is consulted first and if not found, the specified URL
@@ -164,7 +164,7 @@ func fetchURL(c *Context, url string, value interface{}, refresh bool) (string, 
 // cache on success. A rateLimitError is returned in the event that
 // the access token has exceeded its hourly limit.
 func doFetch(c *Context, url string, req *http.Request) (*http.Response, error) {
-	log.Printf("fetching %q...", url)
+	log.Printf("fetching with new code %q...", url)
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, err
